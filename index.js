@@ -1,60 +1,37 @@
 const express = require("express");
-require("dotenv").config();
-const port = process.env.PORT || process.argv[2] || 8080;
+const cors = require("cors");
+const port = 8080;
 const fs = require("fs");
 const { v4: uuid } = require("uuid");
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 const question1 = {
   question: "What kind of business are you starting?",
-  options: {
-    first: "fashion",
-    second: "food",
-    third: "gaming",
-    fourth: "music",
-    fifth: "movies",
-    sixth: "tech",
-  },
+  options: ["fashion", "food", "gaming", "music", "movies", "tech"],
 };
 const question2 = {
-  question: "Do you want to advertise in other sites?",
-  options: {
-    first: "Yes",
-    second: "No",
-  },
+  question: "Do you want to advertise in other cites?",
+  options: ["Yes", "No"],
 };
 const question3 = {
   question: "Do you have an existing store?",
-  options: {
-    first: "Yes",
-    second: "No",
-  },
+  options: ["Yes", "No"],
 };
 const question4 = {
   question: "Are you going to sell more than one product?",
-  options: {
-    first: "Yes",
-    second: "No",
-  },
+  options: ["Yes", "No"],
 };
 
 const question5 = {
   question: "Are you planning on selling internationally?",
-  options: {
-    first: "Yes",
-    second: "No",
-  },
+  options: ["Yes", "No"],
 };
 const question6 = {
   question: "What's your monthly E-commerce budget?",
-  options: {
-    first: "Not sure",
-    second: "$50-$100",
-    third: "$100-$150",
-    forth: "$150+",
-  },
+  options: ["Not sure", "$50-$100", "$100-$150", "$150+"],
 };
 
 app.get("/first", (req, res) => {
