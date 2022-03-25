@@ -1,0 +1,47 @@
+[
+  {
+    "id": "0b871f44-95e0-41e4-9a8e-0a5e0e84d945",
+    "businessType": "gaming",
+    "Q2": true,
+    "Q3": true,
+    "Q4": true,
+    "Q5": true,
+    "budget": "$100-$150"
+  },
+  {
+    "id": "1ac3c62c-33e7-444e-997c-ee7eefdfa48a",
+    "businessType": "gaming",
+    "Q2": true,
+    "Q3": true,
+    "Q4": true,
+    "Q5": true,
+    "budget": "$100-$150"
+  },
+  {
+    "id": "916ac68c-61e1-4689-8499-d6d7dd602879",
+    "businessType": "gaming",
+    "Q2": true,
+    "Q3": true,
+    "Q4": true,
+    "Q5": true,
+    "budget": "$100-$150"
+  },
+  {
+    "id": "ba224e13-af05-47b5-9e41-f46ab35b825c",
+    "businessType": "gaming",
+    "Q2": true,
+    "Q3": true,
+    "Q4": true,
+    "Q5": true,
+    "budget": "$100-$150"
+  },
+  {
+    "id": "b7c85450-6bf7-4476-95f3-50c410e0746a",
+    "businessType": "gaming",
+    "Q2": true,
+    "Q3": true,
+    "Q4": true,
+    "Q5": true,
+    "budget": "$100-$150"
+  }
+]

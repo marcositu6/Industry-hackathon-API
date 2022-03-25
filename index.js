@@ -1,4 +1,3 @@
-const cors = require("cors");
 const express = require("express");
 require("dotenv").config();
 const port = process.env.PORT || process.argv[2] || 8080;
@@ -7,46 +6,110 @@ const { v4: uuid } = require("uuid");
 
 const app = express();
 app.use(express.json());
-app.use(cors());
 
-app.get("/", (req, res) => {
-  fs.readFile("./data/inventories.json", "utf-8", (err, data) => {
-    if (err) {
-      res.status(404).send("Inventory not found.");
-    } else {
-      res.json(JSON.parse(data));
-    }
-  });
+const question1 = {
+  question: "What kind of business are you starting?",
+  options: {
+    first: "fashion",
+    second: "food",
+    third: "gaming",
+    fourth: "music",
+    fifth: "movies",
+    sixth: "tech",
+  },
+};
+const question2 = {
+  question: "Do you want to advertise in other sites?",
+  options: {
+    first: "Yes",
+    second: "No",
+  },
+};
+const question3 = {
+  question: "Do you have an existing store?",
+  options: {
+    first: "Yes",
+    second: "No",
+  },
+};
+const question4 = {
+  question: "Are you going to sell more than one product?",
+  options: {
+    first: "Yes",
+    second: "No",
+  },
+};
+
+const question5 = {
+  question: "Are you planning on selling internationally?",
+  options: {
+    first: "Yes",
+    second: "No",
+  },
+};
+const question6 = {
+  question: "What's your monthly E-commerce budget?",
+  options: {
+    first: "Not sure",
+    second: "$50-$100",
+    third: "$100-$150",
+    forth: "$150+",
+  },
+};
+
+app.get("/first", (req, res) => {
+  res.json(question1);
 });
-
 app.get("/second", (req, res) => {
-  fs.readFile("./data/inventories.json", "utf-8", (err, data) => {
-    if (err) {
-      res.status(404).send("Inventory not found.");
-    } else {
-      let inventory = JSON.parse(data).find(
-        (inventory) => inventory.id === req.params.id
-      );
-      res.json(inventory);
-    }
-  });
+  res.json(question2);
+});
+app.get("/third", (req, res) => {
+  res.json(question3);
+});
+app.get("/fourth", (req, res) => {
+  res.json(question4);
+});
+app.get("/fifth", (req, res) => {
+  res.json(question5);
+});
+app.get("/sixth", (req, res) => {
+  res.json(question6);
 });
 
-router.post("/", (req, res) => {
-  const { details, availablity } = req.body;
-  // first we need to read the warehouse file and get the warehouseId of corresponding warehouse passed
-  fs.readFile("./data/warehouses.json", "utf-8", (err, data) => {
+// create a new form answer
+// route -> POST http://localhost8080/api
+/* INCOMING DATA FORMAT
+    "{
+      "businessType": "gaming",
+      "Q2": true,
+      "Q3": true,
+      "Q4": true,
+      "Q5": true,
+      "budget": "$100-$150"
+    }
+    */
+app.post("/API", (req, res) => {
+  fs.readFile("./Data/Data.json", "utf-8", (err, data) => {
     if (err) {
       res.status(404).send("Resource not found.");
     } else {
-      fs.writeFile(
-        "./data/inventories.json",
-        JSON.stringify(inventoryData),
-        (err) => {
-          if (err) alert.log("File could not be written");
-        }
-      );
-      res.json(newItem);
+      let answersData = JSON.parse(data);
+      let newAnswer = {
+        id: uuid(),
+        businessType: req.body.businessType,
+        Q2: req.body.Q2,
+        Q3: req.body.Q3,
+        Q4: req.body.Q4,
+        Q5: req.body.Q5,
+        budget: req.body.budget,
+      };
+
+      answersData.push(newAnswer);
+
+      fs.writeFile("./Data/Data.json", JSON.stringify(answersData), (err) => {
+        if (err) alert.log("File could not be written");
+      });
+      res.json(newAnswer);
     }
   });
 });
